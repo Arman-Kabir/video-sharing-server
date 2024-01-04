@@ -17,10 +17,12 @@ const connect = () => {
     });
 };
 
-app.use("/api/users", authRoutes);
+app.use(express.json())
+
+app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/users", videoRoutes);
-app.use("/api/users", commentRoutes);
+app.use("/api/video", videoRoutes);
+app.use("/api/comment", commentRoutes);
 
 
 
