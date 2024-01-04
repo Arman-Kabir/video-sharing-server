@@ -24,6 +24,15 @@ app.use("/api/users", userRoutes);
 app.use("/api/video", videoRoutes);
 app.use("/api/comment", commentRoutes);
 
+app.use((err,req,res,next)=>{
+    const status = err.status || 500;
+    const message = err.message || "something went wrong";
+    return res.status(status).json({
+        success:false,
+        status:status,
+        message:message
+    })
+})
 
 
 app.listen(8800, () => {
