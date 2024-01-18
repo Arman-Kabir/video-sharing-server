@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import userRoutes from './routes/users.js';
 import commentRoutes from './routes/comments.js';
 import videoRoutes from './routes/videos.js';
@@ -8,6 +9,7 @@ import authRoutes from './routes/auth.js';
 import cookieParser from 'cookie-parser';
 
 const app = express();
+app.use(cors());
 dotenv.config();
 
 const connect = () => {
