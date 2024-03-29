@@ -4,10 +4,10 @@ const router = express.Router();
 
 // Create a User
 router.post("/signup",signup)
-router.post("/signin",signin)
 
 // Sign IN
-router.post("/signin",)
+router.post("/signin",signin)
+// router.post("/signin",)
 
 // Google Authentication
 router.post("/google",)
