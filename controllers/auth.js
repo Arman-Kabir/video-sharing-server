@@ -34,11 +34,34 @@ export const signin = async (req, res, next) => {
         const { password, ...others } = user._doc;
 
         res.cookie("access_token", token, {
-            httpOnly: true
+            httpOnly: true,
+            // secure: true
         }).status(200).json(others)
-        
+
     } catch (err) {
         // todo
         next(err);
+    }
+}
+
+export const googleAuth = async (req, res, next) => {
+    try {
+        const user = User.findOne({ email: req.body.email });
+
+        if (user) {
+            const token = jwt.sign({ id: user._id }, process.env.JWT);
+            res.cookie("access_token", token, {
+                httpOnly: true,
+                // secure: true
+            }).status(200).json(user._doc);
+        }else{
+            const newUser = new User({
+                ...req.body,
+                fromGoogle:true
+            })
+        }
+
+    } catch (error) {
+
     }
 }
